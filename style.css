@@ -14,6 +14,7 @@
     padding: 1rem 1rem;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 }
 #header{
     padding: 1rem 1rem;
