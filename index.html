@@ -5,9 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project: Rock Paper Scissors</title>
-    <script src="script.js"></script> 
+    <link rel="stylesheet" href="style.css">
+     <!--googleFont-->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&family=Roboto&display=swap" rel="stylesheet">
+     <!--FontAwesome link-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    
+    <!-- Show number of round -->
+    <div id="header">Round 1</div>
+    <div id="desc">Please select your choice!</div>
+    <!-- show options -->
+    <div id="btn">
+        <button onclick="rockClick()">Rock</button>
+        <button onclick="paperClick()">Paper</button>
+        <button onclick="scissorsClick()">Scissors</button>
+    </div>
+    <!-- display -->
+    <div id="display">You have 5 rounds to play!</div>
+    <!-- show result -->
+    <div id="results">Your Score:0 Computer Score:0</div>
+    <!-- play again -->
+    <div  id="reset"><button onclick="resetProgress()">Play Again</button></div>
+    <script src="script.js"></script> 
 </body>
 </html>

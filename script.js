@@ -6,58 +6,86 @@ function getRandomInt(min, max) {
     return Math.random() * (max - min) + min;
 } 
 function playRound(playerSelection, computerSelection) {
-    playerSelection=playerSelection.toUpperCase();
-    computerSelection=computerSelection.toUpperCase();
-
+    if(totalRounds===4){
+        if(playerScore>computerScore){
+            results.innerText=`You Won! your final score is ${playerScore} & computer score is ${computerScore}`;
+        }else if(computerScore>playerScore){
+            results.innerText=`You Lost! your final score is ${playerScore} & computer score is ${computerScore}`;
+        }else{
+            results.innerText=`Draw! your final score is ${playerScore} & computer score is ${computerScore}`;
+        }
+        totalRounds=0;
+        playerScore=0;
+        computerScore=0;
+        header.innerText=`Round ${totalRounds+1}`;
+        display.innerText=`You have 5 rounds to play!`;
+        reset.style.display="inline-block";
+        header.style.display="none";
+        desc.style.display="none";
+        display.style.display="none";
+        btn.style.display='none';
+        return;
+    }
+    totalRounds++;
     if(playerSelection===computerSelection){
-        return "Draw";
+        display.innerText=`Draw, your choice and computer choice are same!`;
     }
     if(playerSelection==="ROCK"&&computerSelection==="PAPER"){
-        return "You Lose! Paper beats Rock";
+        computerScore++;
+        display.innerText=`You Lose! Papers beats Rock  (computer choice:${computerSelection})`;
     }
     if(playerSelection==="PAPER"&&computerSelection==="SCISSORS"){
-        return "You Lose! Scissors beats Paper";
+        computerScore++;
+        display.innerText=`You Lose! Scissors beats Papers  (computer choice:${computerSelection})`;
     }
     if(playerSelection==="SCISSORS"&&computerSelection==="ROCK"){
-        return "You Lose! Rock beats Scissors";
+        computerScore++;
+        display.innerText=`You Lose! Rock beats Scissors  (computer choice:${computerSelection})`;
     }
     if(computerSelection==="ROCK"&&playerSelection==="PAPER"){
-        return "You Won! Paper beats Rock";
+        playerScore++;
+        display.innerText=`You Won! Paper beats Rock   (computer choice:${computerSelection})`;
     }
     if(computerSelection==="PAPER"&&playerSelection==="SCISSORS"){
-        return "You Won! Scissors beats Paper";
+        playerScore++;
+        display.innerText=`You Won! Scissors beats Papers   (computer choice:${computerSelection})`;
+
     }
     if(computerSelection==="SCISSORS"&&playerSelection==="ROCK"){
-        return "You Won! Rock beats Scissors";
+        playerScore++;
+        display.innerText=`You Won! Rock beats Scissors  (computer choice:${computerSelection})`;
     }
-    return "Incorrect Input!";
+    results.innerText=`Your Score:${playerScore} Computer Score:${computerScore}`;
+    header.innerText=`Round ${totalRounds+1}`;
  }
-function game() {
-    let playerScore=0;
-    let computerScore=0;
-    let finalResult="Draw!";
 
-    for (let i = 0; i < 5; i++) {
-        const userInput=window.prompt(`Round ${i}:`+"Enter your choice out of rock, papers & scissors");
-        const playerSelection =userInput;
-        const computerSelection = getComputerChoice();
-        console.log(`Round${i+1}: `+playRound(playerSelection, computerSelection));
-        stringCheck=playRound(playerSelection, computerSelection)
-        if(stringCheck.includes("Won")){
-            playerScore++;
-        }
-        if(stringCheck.includes("Lose")){
-            computerScore++;
-        }
-     }
+ //variables
+let header=document.getElementById("header");
+let results=document.getElementById("results");
+let display=document.getElementById("display");
+let reset=document.getElementById("reset");
+let desc=document.getElementById('desc');
+let btn=document.getElementById('btn');
+totalRounds=0;
+playerScore=0;
+computerScore=0;
 
-    if(playerScore>computerScore){
-        finalResult="You Won!";
-    }
-    if(playerScore<computerScore){
-        finalResult="You Lose!";
-    }
-
-    console.log(`${finalResult}, Your total score is ${playerScore} and computer score is ${computerScore}`);
+//onclick functions
+function paperClick(){
+    playRound("PAPER",getComputerChoice());
 }
-game();
+function rockClick(){
+    playRound("ROCK",getComputerChoice());
+}
+function scissorsClick(){
+    playRound("SCISSORS",getComputerChoice());
+}
+
+function resetProgress(){
+        reset.style.display="none";
+        header.style.display="block";
+        desc.style.display="block";
+        display.style.display="block";
+        btn.style.display='block';
+        results.innerText=`Your Score:${playerScore} Computer Score:${computerScore}`;
+}
