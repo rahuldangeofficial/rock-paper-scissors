@@ -1,1 +1,1 @@
-# [Rock-Paper-Scissors](https://rahuldangeofficial.github.io/Rock-Paper-Scissors/)
+# [rock-paper-scissors](https://rahuldangeofficial.github.io/rock-paper-scissors/)
